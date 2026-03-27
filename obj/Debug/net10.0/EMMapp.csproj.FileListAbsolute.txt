@@ -146,3 +146,4 @@
 /home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/EMMapp.pdb
 /home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/EMMapp.genruntimeconfig.cache
 /home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/ref/EMMapp.dll
+/home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/EMMapp.sourcelink.json
