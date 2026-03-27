@@ -147,3 +147,5 @@
 /home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/EMMapp.genruntimeconfig.cache
 /home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/ref/EMMapp.dll
 /home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/EMMapp.sourcelink.json
+/home/jonathan/Documents/Projects/EMMapp/bin/Debug/net10.0/EMMapp.staticwebassets.runtime.json
+/home/jonathan/Documents/Projects/EMMapp/obj/Debug/net10.0/compressed/tbeitccnvi-{0}-9uimhlz624-9uimhlz624.gz

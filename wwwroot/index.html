@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Encuentro Matrimonial Mundial</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                max-width: 500px;
+                margin: 50px auto;
+
+            }
+            input, button {
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+
+            }
+            .success { color: green;}
+            .error { color: red;}
+        </style>
+    </head>
+    <body>
+        <h2>Registracion Fin De Semana</h2>
+
+        <form id="registrationForm">
+            <input type="text" id="lastName" placeholder="Apehido" required />
+            <input type="text" id="hisName" placeholder="El" required />
+            <input type="text" id="herName" placeholder="Ella" required />
+            <input type="tel" id="hisPhone" placeholder="Numero El" required />
+            <input type="tel" id="herPhone" placeholder="Numero Ella" />
+            <input type="text" id="city" placeholder="city" />
+            <input type="checkbox" id="readSpanish" title="lee/escribe Espanol" />
+            <input type="number" id="zone" placeholder="zona" />
+            <input type="checkbox" id="churchMarried" title="Casados por Iglecia" />
+            <input type="number" id="years" placeholder="tiempo juntos" />
+            <input type="text" id="comments" placeholder="commentarios" />
+            <button type="submit">Registrar</button>
+
+        </form>
+        <p id="message"></p>
+    </body>
+</htl>

@@ -29,7 +29,8 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/", () => "Hello");
 
 app.UseCors("AllowAll");
+app.UseStaticFiles();
+app.MapFallbackToFile("index.html");
 app.Run();

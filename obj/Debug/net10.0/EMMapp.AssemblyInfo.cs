@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EMMapp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eab5a12bd6e314f55c3f2247879246dc78ec6de0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b65260115b0448749d13eacb45072c3b0174271")]
 [assembly: System.Reflection.AssemblyProductAttribute("EMMapp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EMMapp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
