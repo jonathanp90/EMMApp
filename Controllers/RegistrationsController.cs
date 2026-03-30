@@ -30,7 +30,7 @@ public class RegistrationsController : ControllerBase
         return Ok(registrations);
     }
 
-    //GET; api/registrations/$
+    //GET; /api/registrations/$
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -42,6 +42,7 @@ public class RegistrationsController : ControllerBase
         return Ok(registration);
     }
 
+//POST: api/registrations
     [HttpPost]
     public async Task<IActionResult> Create(RegistrationCreateDto dto)
     {
@@ -57,9 +58,9 @@ public class RegistrationsController : ControllerBase
                 city = dto.city,
                 zone = dto.zone,
                 herPhone = "",
-                paid = 0.0f,
-                churchMarried = false,
-                readSpanish = false,
+                paid = 0,
+                churchMarried = "No"
+                readSpanish = "No",
                 comments = ""
 
             };

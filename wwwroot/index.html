@@ -33,10 +33,61 @@
             <input type="number" id="zone" placeholder="zona" />
             <input type="checkbox" id="churchMarried" title="Casados por Iglecia" />
             <input type="number" id="years" placeholder="tiempo juntos" />
+            <input type="number" id="paid" title="Cantidad recibida" />
             <input type="text" id="comments" placeholder="commentarios" />
             <button type="submit">Registrar</button>
 
         </form>
         <p id="message"></p>
+
+        <script>
+            document.getElementById("registrationForm").addEventListener("submit", async function(e) {
+                e.preventDefault();
+
+                const data = {
+                    lastName: document.getElementById("lastName").value,
+                    hisName: document.getElementById("hisName").value,
+                    herName: document.getElementById("herName").value,
+                    hisPhone: document.getElementById("hisPhone").value,
+                    herPhone: document.getElementById("herPhone").value,
+                    city: document.getElementById("city").value,
+                    readSpanish: document.getElementById("readSpanish").value == 1? "Si" : "No",
+                    zone: document.getElementById("zone").value,
+                    churchMarried: document.getElementById("churchMarried").value == 1? "Si" : "No",
+                    yearsMarried: document.getElementById("years").value,
+                    paid: document.getElementById("paid").value,
+                    comments: document.getElementById("comments").value
+
+                };
+
+                try{
+                    const response = await fetch("/api/regist   rations", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const message = document.getElementById("message");
+
+                    if(response.ok)
+                    {
+                        message.textContent = "Registration Successful";
+                        message.className = "success";
+                        document.getElementById("registrationForm").reset();
+                    }
+                    else
+                    {
+                        message.textContent = "Error Submitting Form";
+                        message.className = "error";
+                    }
+                }
+                catch(error)
+                {
+                    document.getElementById("message").textContent = "Server Error";
+                }
+            });
+            </script>   
     </body>
-</htl>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Dashboard</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                max-width: 900px;
+                margin: 4opx auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+                border-bottom: 1px;
+
+            }
+            button {
+                padding: 6px 10px;
+                margin-right: 5px;
+            }
+            input {
+                padding: 8px;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Admin Panel</h2>
+        <input type="text" id="search" placeholder="Search by last name" />
+        <table>
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Nombre de El</th>
+                    <th>Nombre de Ella</th>
+                    <th>Numero de El</th>
+                    <th>Numero de Ella</th>
+                    <th>Leen/Entienden Espanol</th>
+                    <th>Casados por la Iglecia</th>
+                    <th>Tiempo Juntos</th>
+                    <th>Cantidad Pagada</th>
+                    <th>Comentarios</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tblBody"></tbody>
+        </table>
+        <script>
+            let registrations = [];
+
+            async function loadData()
+            {
+                const res = await fetch("api/registrations");
+                registrations = await res.json();
+                renderTable(registrations);
+            }
+
+            function renderTable(data)
+            {
+                const table = document.getElementById("tblBody");
+                table.innerHTML = "";
+
+                data.foreach(r => {
+                    const row = `<tr>
+                        <td>${r.lastName}</td>
+                        <td>${r.hisName}</td>
+                        <td>${r.herName}</td>
+                        <td>${r.herName}</td>
+                        <td>${r.hisPhone}</td>
+                        <td>${r.herPhone}</td>
+                        <td>${r.speakSpanish? "Si" : "No"}</td>
+                        <td>${r.churchMarried ? "Si": "No"}</td>
+                        <td>${r.years}</td>
+                        <td>${r.paid}</td>
+                        <td>${r.comments}</td>
+                        <td>
+                            <button onclick="deleteReg(${r.id})">Delete</button>
+                        </td>
+                    </tr>
+                    `;
+
+                    table.innerHTML += row;
+                });
+            }
+
+            document.getElementById("search").addEventListener("input", function() {
+                const value = this.value.toLowerCase();
+                const filtered = registrations.filter( r => 
+                    r.lastName.toLowerCase().includes(value)
+                );
+                renderTable(filtered);
+            });
+
+            async function deleteReg(id) {
+
+                if(!confirm("Remover esta registracion?")) return;
+
+                await fetch('/api/registrations/${id}', {
+                    method: "DELETE"
+                });
+                
+            }
+
+                
+            
+        </script>
+    </body>
+</html>
