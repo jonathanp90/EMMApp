@@ -55,13 +55,14 @@ public class RegistrationsController : ControllerBase
                 hisName = dto.hisName,
                 herName = dto.herName,
                 hisPhone = dto.hisPhone,
+                herPhone = dto.herPhone,
                 city = dto.city,
                 zone = dto.zone,
-                herPhone = "",
-                paid = 0,
-                churchMarried = "No"
-                readSpanish = "No",
-                comments = ""
+                paid = dto.paid,
+                churchMarried = dto.churchMarried,
+                readSpanish = dto.readSpanish,
+                yearsMarried = dto.yearsMarried,
+                comments = dto.comments
 
             };
 
@@ -92,6 +93,7 @@ public class RegistrationsController : ControllerBase
         registration.paid = updated.paid;
         registration.churchMarried = updated.churchMarried;
         registration.readSpanish = updated.readSpanish;
+        registration.yearsMarried = updated.yearsMarried;
         registration.comments = updated.comments;
 
         await _context.SaveChangesAsync();
@@ -109,7 +111,7 @@ public class RegistrationsController : ControllerBase
             return NotFound();
 
         _context.Remove(registration);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         return NoContent();
     }

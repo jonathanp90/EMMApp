@@ -54,7 +54,7 @@
 
             async function loadData()
             {
-                const res = await fetch("api/registrations");
+                const res = await fetch("/api/registrations");
                 registrations = await res.json();
                 renderTable(registrations);
             }
@@ -64,17 +64,16 @@
                 const table = document.getElementById("tblBody");
                 table.innerHTML = "";
 
-                data.foreach(r => {
+                data.forEach(r => {
                     const row = `<tr>
                         <td>${r.lastName}</td>
                         <td>${r.hisName}</td>
                         <td>${r.herName}</td>
-                        <td>${r.herName}</td>
                         <td>${r.hisPhone}</td>
                         <td>${r.herPhone}</td>
-                        <td>${r.speakSpanish? "Si" : "No"}</td>
-                        <td>${r.churchMarried ? "Si": "No"}</td>
-                        <td>${r.years}</td>
+                        <td>${r.readSpanish}</td>
+                        <td>${r.churchMarried}</td>
+                        <td>${r.yearsMarried}</td>
                         <td>${r.paid}</td>
                         <td>${r.comments}</td>
                         <td>
@@ -99,14 +98,14 @@
 
                 if(!confirm("Remover esta registracion?")) return;
 
-                await fetch('/api/registrations/${id}', {
+                await fetch(`/api/registrations/${id}`, {
                     method: "DELETE"
                 });
-                
+
+                await loadData();
             }
 
-                
-            
+            loadData();
         </script>
     </body>
 </html>

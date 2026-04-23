@@ -51,17 +51,17 @@
                     hisPhone: document.getElementById("hisPhone").value,
                     herPhone: document.getElementById("herPhone").value,
                     city: document.getElementById("city").value,
-                    readSpanish: document.getElementById("readSpanish").value == 1? "Si" : "No",
+                    readSpanish: document.getElementById("readSpanish").checked ? "Si" : "No",
                     zone: document.getElementById("zone").value,
-                    churchMarried: document.getElementById("churchMarried").value == 1? "Si" : "No",
-                    yearsMarried: document.getElementById("years").value,
-                    paid: document.getElementById("paid").value,
+                    churchMarried: document.getElementById("churchMarried").checked ? "Si" : "No",
+                    yearsMarried: Number(document.getElementById("years").value || 0),
+                    paid: Number(document.getElementById("paid").value || 0),
                     comments: document.getElementById("comments").value
 
                 };
 
                 try{
-                    const response = await fetch("/api/regist   rations", {
+                    const response = await fetch("/api/registrations", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
