@@ -5,40 +5,97 @@
         <style>
             body {
                 font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+                background: #f7f8fa;
+            }
+            .layout {
+                min-height: 100vh;
+            }
+            .side-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 220px;
+                height: 100vh;
+                background: #263238;
+                color: white;
+                padding: 24px 16px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+            .side-menu h1 {
+                font-size: 18px;
+                line-height: 1.3;
+                margin: 0 0 24px;
+            }
+            .side-menu a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                padding: 10px 12px;
+                border-radius: 6px;
+                margin-bottom: 8px;
+            }
+            .side-menu a.active,
+            .side-menu a:hover {
+                background: #455a64;
+            }
+            main {
+                width: 100%;
                 max-width: 500px;
-                margin: 50px auto;
-
+                margin: 50px 0 50px 220px;
+                padding: 0 20px;
+                box-sizing: border-box;
             }
             input, button {
                 width: 100%;
                 padding: 10px;
                 margin: 8px 0;
-
             }
             .success { color: green;}
             .error { color: red;}
         </style>
     </head>
     <body>
-        <h2>Registracion Fin De Semana</h2>
+        <div class="layout">
+            <nav class="side-menu">
+                <h1>Encuentro Matrimonial Mundial</h1>
+                <a class="active" href="/index.html">Registrar</a>
+                <a href="/admin.html">Lista de registrados</a>
+            </nav>
+            <main>
+                <h2>Registrar</h2>
 
-        <form id="registrationForm">
-            <input type="text" id="lastName" placeholder="Apehido" required />
-            <input type="text" id="hisName" placeholder="El" required />
-            <input type="text" id="herName" placeholder="Ella" required />
-            <input type="tel" id="hisPhone" placeholder="Numero El" required />
-            <input type="tel" id="herPhone" placeholder="Numero Ella" />
-            <input type="text" id="city" placeholder="city" />
-            <input type="checkbox" id="readSpanish" title="lee/escribe Espanol" />
-            <input type="number" id="zone" placeholder="zona" />
-            <input type="checkbox" id="churchMarried" title="Casados por Iglecia" />
-            <input type="number" id="years" placeholder="tiempo juntos" />
-            <input type="number" id="paid" title="Cantidad recibida" />
-            <input type="text" id="comments" placeholder="commentarios" />
-            <button type="submit">Registrar</button>
-
-        </form>
-        <p id="message"></p>
+                <form id="registrationForm">
+                    <label for="lastName">Apellido:</label>
+                    <input type="text" id="lastName" placeholder="Apellido" required />
+                    <label for="hisName">Nombre de El:</label>
+                    <input type="text" id="hisName" placeholder="El" required />
+                    <label for="herName">Nombre de Ella:</label>
+                    <input type="text" id="herName" placeholder="Ella" required />
+                    <label for="hisPhone">Numero de El:</label>
+                    <input type="tel" id="hisPhone" placeholder="Numero El" required />
+                    <label for="herPhone">Numero de Ella:</label>
+                    <input type="tel" id="herPhone" placeholder="Numero Ella" />
+                    <label for="city">Ciudad:</label>
+                    <input type="text" id="city" placeholder="city" />
+                    <label for="readSpanish">Saben leer Espa&ntilde;ol</label>
+                    <input type="checkbox" id="readSpanish" />
+                    <label for="zone">Zona:</label>
+                    <input type="number" id="zone" placeholder="zona" />
+                    <label for="churchMarried">Casados por la Iglecia</label>
+                    <input type="checkbox" id="churchMarried" />
+                    <label for="years">A&ntilde;os casados:</label>
+                    <input type="number" id="years" placeholder="tiempo juntos" />
+                    <label for="paid">Cantidad pagada:</label>
+                    <input type="number" id="paid" title="Cantidad recibida" />
+                    <label for="comments">Commentarios o restringiones:</label>
+                    <input type="text" id="comments" placeholder="commentarios" />
+                    <button type="submit">Registrar</button>
+                </form>
+                <p id="message"></p>
+            </main>
+        </div>
 
         <script>
             document.getElementById("registrationForm").addEventListener("submit", async function(e) {
@@ -52,7 +109,7 @@
                     herPhone: document.getElementById("herPhone").value,
                     city: document.getElementById("city").value,
                     readSpanish: document.getElementById("readSpanish").checked ? "Si" : "No",
-                    zone: document.getElementById("zone").value,
+                    zone: Number(document.getElementById("zone").value || 0),
                     churchMarried: document.getElementById("churchMarried").checked ? "Si" : "No",
                     yearsMarried: Number(document.getElementById("years").value || 0),
                     paid: Number(document.getElementById("paid").value || 0),
@@ -88,6 +145,6 @@
                     document.getElementById("message").textContent = "Server Error";
                 }
             });
-            </script>   
+            </script>
     </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+</html>

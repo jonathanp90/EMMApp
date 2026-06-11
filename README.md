@@ -17,7 +17,7 @@ EMMApp is a small ASP.NET Core web app for collecting and managing registrations
 - `Models/Registration.cs` contains the persisted registration model.
 - `Dtos/RegistrationCreateDto.cs` defines the create request payload used by the POST endpoint.
 - `wwwroot/index.html` is the public registration page.
-- `wwwroot/admnin.html` is the current admin page prototype.
+- `wwwroot/admin.html` is the current admin page prototype.
 
 ## Getting Started
 
@@ -95,7 +95,7 @@ Registrations currently store:
 ## Frontend Pages
 
 - `/` loads the public registration form from `wwwroot/index.html`
-- `/admnin.html` loads the admin dashboard prototype
+- `/admin.html` loads the admin dashboard prototype
 
 ## Development Notes
 

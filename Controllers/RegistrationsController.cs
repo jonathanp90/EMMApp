@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using EMMapp.Data;
 using EMMapp.Models;
 using EMMapp.Dtos;
+using EMMapp.Services;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
@@ -16,9 +17,12 @@ public class RegistrationsController : ControllerBase
 {
     private readonly AppDbContext _context;
 
-    public RegistrationsController(AppDbContext context)
+    private readonly CertificateService _certificateService;
+
+    public RegistrationsController(AppDbContext context, CertificateService certificateService)
     {
         _context = context;
+        _certificateService = certificateService;
     }
 
 //GET: api/registrations
@@ -38,7 +42,7 @@ public class RegistrationsController : ControllerBase
 
         if(registration == null)
             return NotFound();
-        
+
         return Ok(registration);
     }
 
@@ -114,6 +118,74 @@ public class RegistrationsController : ControllerBase
         await _context.SaveChangesAsync();
 
         return NoContent();
+    }
+
+
+    //Certificate for member
+    [HttpGet("{id}/Certificate")]
+    public async Task<IActionResult> GenerateCertificate(int id)
+    {
+        var registration = await _context.Registrations.FindAsync(id);
+
+        if(registration == null)
+        {
+            return NotFound();
+        }
+
+        var pdfBytes = _certificateService.GenerateCertificate(registration.hisName, registration.herName, registration.lastName);
+
+        return File(pdfBytes, "application/pdf", $"{registration.lastName}, {registration.hisName} y {registration.herName} certificado.pdf");
+    }
+
+
+    [HttpGet("certificates/all")]
+    public async Task<IActionResult> GenerateAllCertificates()
+    {
+        var registrations = await _context.Registrations
+        .OrderBy(r => r.lastName)
+        .ToListAsync();
+
+        if(!registrations.Any())
+        {
+            return BadRequest("No registrations found.");
+        }
+
+        var pdf = _certificateService.GenerateAllCertificates(registrations);
+
+        return File(pdf, "application/pdf", "all-certificates.pdf");
+    }
+
+    //Table Tents
+    [HttpGet("{id}/table-tent")]
+    public async Task<IActionResult> GenerateTableTent(int id)
+    {
+        var registration = await _context.Registrations.FindAsync(id);
+
+        if(registration == null)
+        {
+            return NotFound();
+        }
+
+        var pdf = _certificateService.GenerateTableTent(registration.hisName, registration.herName, registration.lastName);
+
+        return File(pdf, "application/pdf", $"{registration.lastName}, {registration.hisName} y {registration.herName} Table Tents.pdf");
+    }
+
+    [HttpGet("table-tents/all")]
+    public async Task<IActionResult> GenerateAllTableTents()
+    {
+        var registrations = await _context.Registrations
+        .OrderBy( r => r.lastName)
+        .ToListAsync();
+
+        if(!registrations.Any())
+        {
+            return BadRequest("No registrations found.");
+        }
+
+        var pdf = _certificateService.GenerateAllTableTents(registrations);
+
+        return File( pdf, "application/pdf", "all-table-tents.pdf");
     }
 
 }
