@@ -1,6 +1,7 @@
 using EMMapp.Data;
 using EMMapp.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,11 @@ var summaries = new[]
 
 app.UseCors("AllowAll");
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "UI")),
+    RequestPath = "/UI"
+});
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 app.Run();

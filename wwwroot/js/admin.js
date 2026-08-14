@@ -1,0 +1,113 @@
+let registrations = [];
+
+            async function loadData()
+            {
+                const res = await fetch("/api/registrations");
+                registrations = await res.json();
+                renderTable(registrations);
+            }
+
+            function renderTable(data)
+            {
+                const table = document.getElementById("tblBody");
+                table.innerHTML = "";
+
+                data.forEach(r => {
+                    const row = document.createElement("tr");
+                    [
+                        r.lastName,
+                        r.hisName,
+                        r.herName,
+                        r.hisPhone,
+                        r.herPhone,
+                        r.readSpanish,
+                        r.churchMarried,
+                        r.yearsMarried,
+                        r.paid,
+                        r.comments
+                    ].forEach(value => {
+                        const cell = document.createElement("td");
+                        cell.textContent = value ?? "";
+                        row.appendChild(cell);
+                    });
+
+                    const actions = document.createElement("td");
+                    const deleteButton = document.createElement("button");
+                    deleteButton.type = "button";
+                    deleteButton.textContent = "Delete";
+                    deleteButton.addEventListener("click", () => deleteReg(r.id));
+
+                    const certificateLink = document.createElement("a");
+                    certificateLink.href = `/api/registrations/${r.id}/certificate`;
+                    certificateLink.target = "_blank";
+
+                    const certificateButton = document.createElement("button");
+                    certificateButton.type = "button";
+                    certificateButton.textContent = "Certificado";
+                    certificateLink.appendChild(certificateButton);
+
+                    const tableTentButton = document.createElement("button");
+                    tableTentButton.type = "button";
+                    tableTentButton.textContent = "Table Tent";
+                    tableTentButton.addEventListener("click", () => downloadTableTent(r.id));
+
+                    actions.appendChild(deleteButton);
+                    actions.appendChild(certificateLink);
+                    actions.appendChild(tableTentButton);
+                    row.appendChild(actions);
+                    table.appendChild(row);
+                });
+            }
+
+            document.getElementById("search").addEventListener("input", function() {
+                const value = this.value.toLowerCase();
+                const filtered = registrations.filter( r =>
+                    r.lastName.toLowerCase().includes(value)
+                );
+                renderTable(filtered);
+            });
+
+            async function deleteReg(id) {
+
+                if(!confirm("Remover esta registracion?")) return;
+
+                await fetch(`/api/registrations/${id}`, {
+                    method: "DELETE"
+                });
+
+                await loadData();
+            }
+
+            function downloadTableTent(id) {
+                const registration = registrations.find(r => r.id === id);
+
+                if (!registration) {
+                    alert("No se encontro la registracion.");
+                    return;
+                }
+
+                const filename = `${registration.lastName}, ${registration.hisName} y ${registration.herName} Table Tents.pdf`;
+                downloadPdf(`/api/registrations/${id}/table-tent`, filename);
+            }
+
+            async function downloadPdf(url, filename) {
+                const res = await fetch(url);
+
+                if (!res.ok) {
+                    alert("No se pudo generar el PDF.");
+                    return;
+                }
+
+                const blob = await res.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+
+               link.href = objectUrl;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+            }
+
+            loadData();
