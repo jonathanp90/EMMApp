@@ -38,9 +38,26 @@ public class CertificateService
 
                     col.Item()
                     .AlignCenter()
-                    .Text(String.Concat(hisName," ","❤️"," ", herName))
-                    .FontSize(28)
-                    .Bold();
+                    //.Text(String.Concat(hisName," ","❤️"," ", herName))
+                    .Row(row =>
+                    {
+                        row.AutoItem()
+                        .Text(hisName)
+                        .FontSize(28)
+                        .Bold();
+
+                        row.AutoItem()
+                        .PaddingHorizontal(8)
+                        .Width(28)
+                        .Height(28)
+                        .Image("Img/red_heart.png")
+                        .FitArea();
+
+                        row.AutoItem()
+                        .Text(herName)
+                        .FontSize(28)
+                        .Bold();
+                    });
 
                     col.Item()
                     .AlignCenter()
@@ -94,9 +111,26 @@ public class CertificateService
 
                             col.Item()
                             .AlignCenter()
-                            .Text(String.Concat(registration.hisName," ","❤️"," ", registration.herName))
-                            .FontSize(28)
-                            .Bold();
+                            //.Text(String.Concat(registration.hisName," ","❤️"," ", registration.herName))
+                            .Row(row =>
+                    {
+                        row.AutoItem()
+                        .Text(registration.hisName)
+                        .FontSize(28)
+                        .Bold();
+
+                        row.AutoItem()
+                        .PaddingHorizontal(8)
+                        .Width(28)
+                        .Height(28)
+                        .Image("Img/red_heart.png")
+                        .FitArea();
+
+                        row.AutoItem()
+                        .Text(registration.herName)
+                        .FontSize(28)
+                        .Bold();
+                    });
 
                             col.Item()
                             .AlignCenter()
@@ -142,9 +176,26 @@ public class CertificateService
                     {
                         c.Item()
                         .AlignCenter()
-                        .Text(String.Concat(hisName, " ❤️ ", herName))
+                        //.Text(String.Concat(hisName, " ❤️ ", herName))
+                        .Row(row =>
+                    {
+                        row.AutoItem()
+                        .Text(hisName)
                         .FontSize(32)
                         .Bold();
+
+                        row.AutoItem()
+                        .PaddingHorizontal(8)
+                        .Width(32)
+                        .Height(32)
+                        .Image("Img/red_heart.png")
+                        .FitArea();
+
+                        row.AutoItem()
+                        .Text(herName)
+                        .FontSize(32)
+                        .Bold();
+                    });
 
                         c.Item()
                         .AlignCenter()
@@ -163,9 +214,26 @@ public class CertificateService
                     {
                         c.Item()
                         .AlignCenter()
-                        .Text(String.Concat(hisName, " ❤️ ", herName))
+                        //.Text(String.Concat(hisName, " ❤️ ", herName))
+                        .Row(row =>
+                    {
+                        row.AutoItem()
+                        .Text(hisName)
                         .FontSize(32)
                         .Bold();
+
+                        row.AutoItem()
+                        .PaddingHorizontal(8)
+                        .Width(32)
+                        .Height(32)
+                        .Image("Img/red_heart.png")
+                        .FitArea();
+
+                        row.AutoItem()
+                        .Text(herName)
+                        .FontSize(32)
+                        .Bold();
+                    });
 
                         c.Item()
                         .AlignCenter()
@@ -206,9 +274,26 @@ public class CertificateService
                     {
                         c.Item()
                         .AlignCenter()
-                        .Text(String.Concat(registration.hisName, " ❤️ ", registration.herName))
+                        //.Text(String.Concat(registration.hisName, " ❤️ ", registration.herName))
+                        .Row(row =>
+                    {
+                        row.AutoItem()
+                        .Text(registration.hisName)
                         .FontSize(32)
                         .Bold();
+
+                        row.AutoItem()
+                        .PaddingHorizontal(8)
+                        .Width(32)
+                        .Height(32)
+                        .Image("Img/red_heart.png")
+                        .FitArea();
+
+                        row.AutoItem()
+                        .Text(registration.herName)
+                        .FontSize(32)
+                        .Bold();
+                    });
 
                         c.Item()
                         .AlignCenter()
@@ -227,9 +312,26 @@ public class CertificateService
                     {
                         c.Item()
                         .AlignCenter()
-                        .Text(String.Concat(registration.hisName, " ❤️ ", registration.herName))
+                        //.Text(String.Concat(registration.hisName, " ❤️ ", registration.herName))
+                        .Row(row =>
+                    {
+                        row.AutoItem()
+                        .Text(registration.hisName)
                         .FontSize(32)
                         .Bold();
+
+                        row.AutoItem()
+                        .PaddingHorizontal(8)
+                        .Width(32)
+                        .Height(32)
+                        .Image("Img/red_heart.png")
+                        .FitArea();
+
+                        row.AutoItem()
+                        .Text(registration.herName)
+                        .FontSize(32)
+                        .Bold();
+                    });
 
                         c.Item()
                         .AlignCenter()
